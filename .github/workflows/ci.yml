@@ -214,14 +214,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .github/workflows
-          build-args: "MODE=${{ matrix.testname }}"
-          push: true
-          tags: |
-            ghcr.io/lien-hsiang-en/alpine:3.20.6-${{ matrix.testname }}
+      
       - uses: actions/upload-artifact@v4
         with:
           name: bench-result-${{ matrix.testname }}
